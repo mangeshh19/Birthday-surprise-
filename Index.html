@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday My Mohtarma ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    text-align: center;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    color: white;
+    overflow-x: hidden;
+}
+
+/* Heading */
+h1 {
+    margin-top: 20px;
+}
+
+/* Message */
+#message {
+    margin: 20px;
+    font-size: 1.1em;
+    white-space: pre-line;
+}
+
+/* Gallery */
+.gallery img {
+    width: 80%;
+    max-width: 280px;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+/* Button */
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    background: red;
+    color: white;
+    margin: 10px;
+}
+
+/* Hearts animation */
+.heart {
+    position: fixed;
+    bottom: 0;
+    font-size: 20px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(0); opacity: 1; }
+    100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+/* WhatsApp button */
+.whatsapp {
+    background: #25D366;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎉 Happy Birthday My Mohtarma 🎉</h1>
+
+<button onclick="startSurprise()">Click for Surprise ❤️</button>
+<button class="whatsapp" onclick="shareWhatsApp()">Share 💌</button>
+
+<div id="message"></div>
+
+<div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+</div>
+
+<canvas id="fireworks"></canvas>
+
+<script>
+// Typing Message
+const text = `✨ Happy Birthday, My Mohtarma ✨
+Today isn’t just your birthday…
+it’s the day my world became more beautiful because you were born.
+
+You’re my happiness, my peace,
+and the most beautiful part of my life. 💖
+
+Your smile lights up my darkest days…
+
+I promise —
+I will always try to make you feel special ❤️`;
+
+let i = 0;
+function typeWriter() {
+    if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 30);
+    }
+}
+
+// Hearts
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+// Fireworks
+const canvas = document.getElementById("fireworks");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+function startFireworks() {
+    setInterval(() => {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height / 2;
+        for(let i=0;i<30;i++){
+            ctx.beginPath();
+            ctx.arc(x + Math.random()*50, y + Math.random()*50, 2, 0, Math.PI*2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+        }
+    }, 500);
+}
+
+// Start all
+function startSurprise(){
+    typeWriter();
+    startFireworks();
+    setInterval(createHeart, 300);
+}
+
+// WhatsApp Share
+function shareWhatsApp(){
+    let url = window.location.href;
+    let text = "देखो ये surprise 🎉❤️";
+    window.open(`https://wa.me/?text=${text} ${url}`);
+}
+</script>
+
+</body>
+</html>
